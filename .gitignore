@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment variables (Sensitive Data)
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+
+# System Files
+.DS_Store
+Thumbs.db
+config.bat

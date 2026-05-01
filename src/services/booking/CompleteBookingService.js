@@ -1,0 +1,46 @@
+import mongoose from "mongoose";
+import { getBookingByIdRaw, updateBookingById } from "../../repositories/BookingRepository.js";
+import bookingStatusService from "./BookingStatusService.js";
+
+class CompleteBookingService {
+    async execute(bookingId, user) {
+        const session = await mongoose.startSession();
+
+        try {
+            let updated;
+            await session.withTransaction(async () => {
+                const booking = await getBookingByIdRaw(bookingId, session);
+                if (!booking) {
+                    throw new Error("Booking not found");
+                }
+
+                if (booking.status !== "confirmed" && booking.status !== "reassigned") {
+                    throw new Error("Only confirmed or reassigned bookings can be marked as completed");
+                }
+
+                const isAdmin = String(user?.roleSlug || user?.role || "").toLowerCase() === "admin";
+                if (!isAdmin && user?.branchId && String(booking.branch) !== String(user.branchId)) {
+                    throw new Error("Branch access denied");
+                }
+
+                updated = await updateBookingById(
+                    bookingId,
+                    {
+                        status: "completed",
+                        completedAt: new Date(),
+                        updatedBy: user.userId,
+                    },
+                    session
+                );
+
+                await bookingStatusService.refreshRoomOperationalStatus(booking.room, session);
+            });
+
+            return updated;
+        } finally {
+            await session.endSession();
+        }
+    }
+}
+
+export default new CompleteBookingService();
