@@ -1,0 +1,61 @@
+{
+  "modules": [
+    {
+      "name": "Hotel & Branch Management",
+      "code": "HOTEL_BRANCH_MANAGEMENT",
+      "description": "Manage hotel brand and branches",
+      "icon": "building",
+      "isActive": true
+    },
+    {
+      "name": "Room Management & Booking",
+      "code": "ROOM_BOOKING",
+      "description": "Manage rooms, availability, and bookings",
+      "icon": "bed",
+      "isActive": true
+    },
+    {
+      "name": "Group Booking & Management",
+      "code": "GROUP_BOOKING",
+      "description": "Manage group bookings and assignments",
+      "icon": "users",
+      "isActive": true
+    },
+    {
+      "name": "Kitchen & Meal Management",
+      "code": "KITCHENANDMEALS",
+      "description": "Manage meal plans, preparation, and schedules",
+      "icon": "utensils",
+      "isActive": true
+    },
+    {
+      "name": "Add-On Services Management",
+      "code": "ADDONS",
+      "description": "Manage add-on services such as laundry, transportation, upgrades",
+      "icon": "plus-circle",
+      "isActive": true
+    },
+    {
+      "name": "Pricing, Billing & Invoicing",
+      "code": "PRICING_BILLING",
+      "description": "Configure pricing, billing, and invoices",
+      "icon": "dollar-sign",
+      "isActive": true
+    },
+    {
+      "name": "Notifications & Communication",
+      "code": "NOTIFICATIONS",
+      "description": "Manage notifications and communications",
+      "icon": "bell",
+      "isActive": true
+    },
+    {
+      "name": "Reporting & Analytics",
+      "code": "REPORTING",
+      "description": "Access reports and analytics",
+      "icon": "chart-bar",
+      "isActive": true
+    }
+  ],
+  "permissionActions": ["create", "read", "update", "delete"]
+}
